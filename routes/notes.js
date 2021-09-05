@@ -25,4 +25,16 @@ router.post(
 	notesController.addnote
 )
 
+router.put(
+	"/updatenote/:id",
+	authMiddleware,
+	notesController.updatenote
+)
+
+router.delete(
+	"/deletenote/:id",
+	authMiddleware,
+	notesController.deletenote
+)
+
 module.exports = router
