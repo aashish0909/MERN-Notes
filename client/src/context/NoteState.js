@@ -13,7 +13,7 @@ const NoteState = (props) => {
 		const json = await axios.get(`${host}/api/notes/fetchallnotes`, {
 			headers: {
 				"auth-token":
-					"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjEzMzgzMDZmM2VkYjRjZjcyYWEzZmRlIn0sImlhdCI6MTYzMDc3NTU2NCwiZXhwIjoxNjMzMzY3NTY0fQ.qJoZffV4LBVDSyVjbqPaEUI2LpaiqWxzi0LyeB4fSiU",
+					localStorage.getItem('token'),
 			},
 		})
 		setNotes(json.data)
@@ -30,7 +30,7 @@ const NoteState = (props) => {
 			{
 				headers: {
 					"auth-token":
-						"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjEzMzgzMDZmM2VkYjRjZjcyYWEzZmRlIn0sImlhdCI6MTYzMDc3NTU2NCwiZXhwIjoxNjMzMzY3NTY0fQ.qJoZffV4LBVDSyVjbqPaEUI2LpaiqWxzi0LyeB4fSiU",
+					localStorage.getItem('token'),
 				},
 			}
 		)
@@ -42,7 +42,7 @@ const NoteState = (props) => {
 		await axios.delete(`${host}/api/notes/deletenote/${id}`, {
 			headers: {
 				"auth-token":
-					"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjEzMzgzMDZmM2VkYjRjZjcyYWEzZmRlIn0sImlhdCI6MTYzMDc3NTU2NCwiZXhwIjoxNjMzMzY3NTY0fQ.qJoZffV4LBVDSyVjbqPaEUI2LpaiqWxzi0LyeB4fSiU",
+					localStorage.getItem('token'),
 			},
 		})
 		const newNotes = notes.filter((note) => {
@@ -58,7 +58,7 @@ const NoteState = (props) => {
 			{
 				headers: {
 					"auth-token":
-						"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjEzMzgzMDZmM2VkYjRjZjcyYWEzZmRlIn0sImlhdCI6MTYzMDc3NTU2NCwiZXhwIjoxNjMzMzY3NTY0fQ.qJoZffV4LBVDSyVjbqPaEUI2LpaiqWxzi0LyeB4fSiU",
+					localStorage.getItem('token'),
 				},
 			}
 		)

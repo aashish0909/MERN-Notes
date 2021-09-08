@@ -7,7 +7,9 @@ module.exports.createUser = async (req, res) => {
 	try {
 		let user = await User.findOne({ email: req.body.email })
 		if (user)
-			return res.status(400).json({ error: "Sorry, a user with this e-mail already exists" })
+			return res
+				.status(400)
+				.json({ success: false, error: "Sorry, a user with this e-mail already exists" })
 
 		user = await User.create({
 			name: req.body.name,
@@ -30,9 +32,7 @@ module.exports.createUser = async (req, res) => {
 					.then((user) => {
 						jwt.sign(data, process.env.JWT_SECRET, { expiresIn: 259200 }, (err, token) => {
 							if (err) throw err
-							res.json({
-								token,
-							})
+							res.json({ success: true, token })
 						})
 					})
 					.catch((err) => console.log(err))
@@ -48,7 +48,7 @@ module.exports.createUser = async (req, res) => {
 module.exports.login = async (req, res) => {
 	try {
 		let user = await User.findOne({ email: req.body.email })
-		if (!user) return res.status(400).json({ error: "User does not exist!" })
+		if (!user) return res.status(400).json({ success: false, error: "User does not exist!" })
 
 		const data = {
 			user: {
@@ -57,13 +57,11 @@ module.exports.login = async (req, res) => {
 		}
 
 		bcrypt.compare(req.body.password, user.password).then((isMatch) => {
-			if (!isMatch) return res.status(400).json({ msg: "Invalid Credentials" })
+			if (!isMatch) return res.status(400).json({ success: false, msg: "Invalid Credentials" })
 
 			jwt.sign(data, process.env.JWT_SECRET, { expiresIn: 2592000 }, (err, token) => {
 				if (err) throw err
-				res.json({
-					token,
-				})
+				res.json({ success: true, token })
 			})
 		})
 		// console.log(data)
