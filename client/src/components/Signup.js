@@ -38,6 +38,7 @@ const Signup = () => {
 	const isAuthenticated = localStorage.getItem("isAuthenticated")
 	useEffect(() => {
 		if (isAuthenticated) history.push("/")
+		// eslint-disable-next-line
 	}, [])
 
 	return (
@@ -45,7 +46,7 @@ const Signup = () => {
 			<form onSubmit={handleSubmit}>
 				<div className="mb-3">
 					<label htmlFor="name" className="form-label">
-                        Name
+						Name
 					</label>
 					<input
 						type="name"

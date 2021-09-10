@@ -28,6 +28,7 @@ const Login = () => {
 	const isAuthenticated = localStorage.getItem("isAuthenticated")
 	useEffect(() => {
 		if (isAuthenticated) history.push("/")
+		// eslint-disable-next-line
 	}, [])
 
 	return (

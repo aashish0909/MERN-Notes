@@ -32,7 +32,9 @@ const Navbar = () => {
 						<ul className={`navbar-nav me-auto mb-2 mb-lg-0`}>
 							<li className="nav-item">
 								<Link
-									className={`nav-link ${location.pathname === "/" ? "active" : ""} ${location.pathname === ("/login" || "/signup") ? "d-none" : ""}`}
+									className={`nav-link ${location.pathname === "/" ? "active" : ""} ${
+										location.pathname === ("/login" || "/signup") ? "d-none" : ""
+									}`}
 									aria-current="page"
 									to="/"
 								>
@@ -41,7 +43,9 @@ const Navbar = () => {
 							</li>
 							<li className="nav-item">
 								<Link
-									className={`nav-link ${location.pathname === "/about" ? "active" : ""} ${location.pathname === ("/login" || "/signup") ? "d-none" : ""}`}
+									className={`nav-link ${location.pathname === "/about" ? "active" : ""} ${
+										location.pathname === ("/login" || "/signup") ? "d-none" : ""
+									}`}
 									to="/about"
 								>
 									About
@@ -60,7 +64,7 @@ const Navbar = () => {
 								</Link>
 							)}
 							{isAuthenticated && (
-								<button className="btn btn-danger mx-2" role="button" onClick={logout}>
+								<button type = "button" className="btn btn-danger mx-2" onClick={logout}>
 									Logout
 								</button>
 							)}

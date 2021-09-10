@@ -1,8 +1,7 @@
 import React from "react"
-import { Redirect, Route, useHistory } from "react-router"
+import { Redirect, Route } from "react-router"
 
 const ProtectedRoute = ({ component: Component, ...restOfProps }) => {
-    let history = useHistory()
     const isAuthenticated = localStorage.getItem("isAuthenticated")
 	return (
 		<Route
