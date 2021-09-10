@@ -12,11 +12,10 @@ const NoteState = (props) => {
 	const getNotes = async () => {
 		const json = await axios.get(`${host}/api/notes/fetchallnotes`, {
 			headers: {
-				"auth-token":
-					localStorage.getItem('token'),
+				"auth-token": localStorage.getItem("token"),
 			},
 		})
-		setNotes(json.data)
+		setNotes(Array.from(json.data))
 	}
 
 	const addNote = async (title, description, tag) => {
@@ -29,8 +28,7 @@ const NoteState = (props) => {
 			},
 			{
 				headers: {
-					"auth-token":
-					localStorage.getItem('token'),
+					"auth-token": localStorage.getItem("token"),
 				},
 			}
 		)
@@ -41,8 +39,7 @@ const NoteState = (props) => {
 	const deleteNote = async (id) => {
 		await axios.delete(`${host}/api/notes/deletenote/${id}`, {
 			headers: {
-				"auth-token":
-					localStorage.getItem('token'),
+				"auth-token": localStorage.getItem("token"),
 			},
 		})
 		const newNotes = notes.filter((note) => {
@@ -57,8 +54,7 @@ const NoteState = (props) => {
 			{ title, description, tag },
 			{
 				headers: {
-					"auth-token":
-					localStorage.getItem('token'),
+					"auth-token": localStorage.getItem("token"),
 				},
 			}
 		)

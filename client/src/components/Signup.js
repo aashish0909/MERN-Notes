@@ -27,7 +27,6 @@ const Signup = () => {
 			password: password,
 			email: email,
 		})
-		console.log(res)
 		if (res.data.success) {
 			localStorage.setItem("token", res.data.token)
 			history.push("/")
