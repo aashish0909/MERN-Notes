@@ -1,5 +1,5 @@
 import axios from "axios"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useHistory } from "react-router"
 
 const Login = () => {
@@ -20,17 +20,16 @@ const Login = () => {
 		setcredentials({ email: "", password: "" })
 		if (res.data.success) {
 			localStorage.setItem("token", res.data.token)
+			localStorage.setItem("isAuthenticated", true)
 			history.push("/")
-			console.log(
-				await axios.get("http://localhost:5000/api/auth/getuser", {
-					headers: {
-						"auth-token": localStorage.getItem("token"),
-					},
-				})
-			)
 		} else {
 		}
 	}
+	const isAuthenticated = localStorage.getItem("isAuthenticated")
+	useEffect(() => {
+		if (isAuthenticated) history.push("/")
+	}, [])
+
 	return (
 		<div className="container">
 			<form onSubmit={handleSubmit}>

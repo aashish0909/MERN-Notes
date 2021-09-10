@@ -1,10 +1,12 @@
-import React from "react"
+import React, { useEffect } from "react"
 import Notes from "./Notes"
 
-export const Home = () => {
+const Home = (props) => {
 	return (
 		<div>
-			<Notes/>
+			<Notes showAlert={props.showAlert} />
 		</div>
 	)
 }
+
+export default Home

@@ -1,9 +1,15 @@
 import React from "react"
-import { Link, useLocation } from "react-router-dom"
+import { Link, useLocation, useHistory } from "react-router-dom"
 
-export const Navbar = () => {
+const Navbar = () => {
 	let location = useLocation()
+	let history = useHistory()
+	const isAuthenticated = localStorage.getItem("isAuthenticated")
 
+	const logout = () => {
+		localStorage.clear()
+		history.push("/login")
+	}
 	return (
 		<div>
 			<nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -23,10 +29,10 @@ export const Navbar = () => {
 						<span className="navbar-toggler-icon"></span>
 					</button>
 					<div className="collapse navbar-collapse" id="navbarSupportedContent">
-						<ul className="navbar-nav me-auto mb-2 mb-lg-0">
+						<ul className={`navbar-nav me-auto mb-2 mb-lg-0`}>
 							<li className="nav-item">
 								<Link
-									className={`nav-link ${location.pathname === "/" ? "active" : ""}`}
+									className={`nav-link ${location.pathname === "/" ? "active" : ""} ${location.pathname === ("/login" || "/signup") ? "d-none" : ""}`}
 									aria-current="page"
 									to="/"
 								>
@@ -35,7 +41,7 @@ export const Navbar = () => {
 							</li>
 							<li className="nav-item">
 								<Link
-									className={`nav-link ${location.pathname === "/about" ? "active" : ""}`}
+									className={`nav-link ${location.pathname === "/about" ? "active" : ""} ${location.pathname === ("/login" || "/signup") ? "d-none" : ""}`}
 									to="/about"
 								>
 									About
@@ -43,8 +49,21 @@ export const Navbar = () => {
 							</li>
 						</ul>
 						<form className="d-flex">
-						<Link className="btn btn-primary mx-2" to="/login" role="button">Login</Link>
-						<Link className="btn btn-primary" to="/signup" role="button">Signup</Link>
+							{!isAuthenticated && (
+								<Link className="btn btn-primary mx-2" to="/login" role="button">
+									Login
+								</Link>
+							)}
+							{!isAuthenticated && (
+								<Link className="btn btn-primary" to="/signup" role="button">
+									Signup
+								</Link>
+							)}
+							{isAuthenticated && (
+								<button className="btn btn-danger mx-2" role="button" onClick={logout}>
+									Logout
+								</button>
+							)}
 						</form>
 					</div>
 				</div>
@@ -52,3 +71,5 @@ export const Navbar = () => {
 		</div>
 	)
 }
+
+export default Navbar

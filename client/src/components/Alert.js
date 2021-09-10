@@ -3,9 +3,11 @@ import React from "react"
 const Alert = (props) => {
 	return (
 		<div>
-			<div className="alert alert-primary" role="alert">
-				{props.message}
-			</div>
+			{props.alert && (
+				<div className={`alert alert-${props.alert.type} alert-fixed`} role="alert">
+					{props.alert.msg}
+				</div>
+			)}
 		</div>
 	)
 }

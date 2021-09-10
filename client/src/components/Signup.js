@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useHistory } from "react-router"
 import axios from "axios"
 
@@ -34,6 +34,11 @@ const Signup = () => {
 		} else {
 		}
 	}
+
+	const isAuthenticated = localStorage.getItem("isAuthenticated")
+	useEffect(() => {
+		if (isAuthenticated) history.push("/")
+	}, [])
 
 	return (
 		<div className="container">
