@@ -22,7 +22,7 @@ const Signup = () => {
 
     setcredentials({ name: "", email: "", password: "", cpassword: "" });
 
-    const res = await axios.post("http://localhost:5000/api/auth/createuser", {
+    const res = await axios.post("/api/auth/createuser", {
       name: name,
       password: password,
       email: email,
