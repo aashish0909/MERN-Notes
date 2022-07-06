@@ -1,12 +1,29 @@
-import React from "react"
-import Notes from "./Notes"
+import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import Notes from "./Notes";
 
 const Home = (props) => {
-	return (
-		<div>
-			<Notes showAlert={props.showAlert} />
-		</div>
-	)
-}
+  const history = useHistory();
+  const loggedIn = localStorage.getItem("isAuthenticated");
 
-export default Home
+  useEffect(() => {
+    const authenticated = localStorage.getItem("isAuthenticated");
+    if (!authenticated) {
+      history.push("/login");
+    }
+  }, []);
+
+  return (
+    <>
+      {loggedIn ? (
+        <div>
+          <Notes showAlert={props.showAlert} />
+        </div>
+      ) : (
+        <div></div>
+      )}
+    </>
+  );
+};
+
+export default Home;
