@@ -3,7 +3,7 @@ import { useState } from "react"
 import axios from "axios"
 
 const NoteState = (props) => {
-	const host = "http://localhost:5000"
+	const host = ""
 
 	const notesInital = []
 
